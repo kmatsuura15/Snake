@@ -1,5 +1,4 @@
 #include <MeggyJrSimple.h>    // Required code, line 1 of 2.
-
 //create instance variables for player X, player Y
 //create a direction variable (It will be an int)
 //each time through the loop 
@@ -15,6 +14,9 @@
 int xcoord = 0;    //initial xcoordinate
 int ycoord = 0;    //initial ycoordinate
 int direction = 0;    //direction variable
+int xApple = random(8);
+int yApple = random(8);
+boolean ateApple = false;
 
 void setup()                    // run once, when the sketch starts
 {
@@ -23,7 +25,8 @@ void setup()                    // run once, when the sketch starts
 
 void loop()                     // run over and over again
 {
-  DrawPx(xcoord,ycoord,2);    //Draws a blue pixel at (0,0)
+  DrawPx(xcoord,ycoord,2);    //Draws a blue pixel at (0,0)\
+  DrawPx(xApple,yApple,Green);
   DisplaySlate();
   delay(200);    //shows the pixel for 200 milliseconds before clearing
   ClearSlate();    //Clears the old pixel
@@ -66,7 +69,19 @@ void loop()                     // run over and over again
     if (xcoord < 0){    //If the xcoord is less than 0, loop it to the right.
       xcoord = 7;  
     }
-
+   
+    if (ateApple){
+      xApple = random(8);
+      yApple = random(8);
+      ateApple = false;
+    }
+    
+    if (xcoord == xApple && ycoord == yApple){
+      ateApple = true;
+    }
+    
+    
+     
    
 }
 
